@@ -5,10 +5,10 @@ import upload from '../middlewares/multerMiddleware.js'
 
 const router=Router()
 
-router.post("/register",upload.single("avatar"),register)
-router.post("/login",login)
-router.get("/logout",logout)
-router.post("/me",isUserLoggedIn,getProfile)
+router.post("/signup",upload.single("avatar"),register)
+router.post("/signin",login)
+router.get("/singout",logout)
+router.post("/getuser",isUserLoggedIn,getProfile)
 router.post("/forgot-password",forgotPassword)
 router.post("/reset/:resetToken",resetPassword)
 router.post("/change-password",isUserLoggedIn,changePassword)

@@ -1,7 +1,6 @@
 import {Schema , model} from 'mongoose'
 import jwt from 'jsonwebtoken'
 import crypto from 'crypto'
-import { type } from 'os'
 
 const userSchema=new Schema({
     fullName:{

@@ -8,6 +8,7 @@ import ChatRouter from './routes/googleAi.route.js'
 import PaymentRouter from './routes/payment.route.js'
 import morgan from 'morgan'
 import errorMiddleware from './middlewares/errorMiddleware.js'
+import adminRoutes from './routes/admin.route.js'
 config()
 
 const app=express()
@@ -31,6 +32,7 @@ app.use("/api/v1/user",UserRouter)
 app.use("/api/v1/course",CourseRouter)
 app.use("/api/v1/chat",ChatRouter)
 app.use("/api/v1/payment",PaymentRouter)
+app.use('/api/v1/admin',adminRoutes)
 
 app.use(errorMiddleware)
 
