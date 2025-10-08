@@ -62,9 +62,17 @@ const app=express()
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+// app.use(cors({
+//     origin:process.env.FE_URL,
+// }))
+
 app.use(cors({
-    origin:process.env.FE_URL,
+  origin: process.env.FE_URL,
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 }))
+
 app.use(cookieParser())
 app.use(morgan('dev'))
 
