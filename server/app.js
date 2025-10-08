@@ -37,6 +37,19 @@ app.get('/', (req, res) => {
     });
 });
 
+// User routes
+app.use('/api/v1/user', UserRouter);
+
+// Course routes
+app.use('/api/v1/course', CourseRouter);
+
+// Chat routes
+app.use('/api/v1/chat', ChatRouter);
+
+// Payment routes
+app.use('/api/v1/payment', PaymentRouter);
+
+// Admin routes
 app.use('/api/v1/admin', adminRoutes);
 
 app.use(errorMiddleware);
