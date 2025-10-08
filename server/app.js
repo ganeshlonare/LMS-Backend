@@ -17,31 +17,36 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(cors({
     origin:process.env.FE_URL,
-    credentials:true
 }))
 app.use(cookieParser())
 app.use(morgan('dev'))
 
 
-app.get('/home',(req,res)=>{
-    res.send('Welcome to Home Page')
-})
-
-//routes
-app.use("/api/v1/user",UserRouter)
-app.use("/api/v1/course",CourseRouter)
-app.use("/api/v1/chat",ChatRouter)
-app.use("/api/v1/payment",PaymentRouter)
-app.use('/api/v1/admin',adminRoutes)
-
-app.use(errorMiddleware)
-
-app.all('*',(req,res)=>{
+app.get('/', (req, res) => {
     res.json({
-        success:false,
-        message:"Page not found"
-    }).status(404)
-})
+        success: true,
+        message: 'Welcome to LMS Backend API',
+        documentation: 'Please use the appropriate API endpoints',
+        available_routes: [
+            '/api/v1/user',
+            '/api/v1/course',
+            '/api/v1/chat',
+            '/api/v1/payment',
+            '/api/v1/admin'
+        ]
+    });
+});
+
+app.use('/api/v1/admin', adminRoutes);
+
+app.use(errorMiddleware);
+
+app.all('*', (req, res) => {
+    res.status(404).json({
+        success: false,
+        message: "Page not found"
+    });
+});
 
 
 export default app
